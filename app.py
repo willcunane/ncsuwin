@@ -1,12 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 
-#url = 'https://gopack.com'
 url = ('https://gopack.com/sports/womens-basketball/schedule')
 response = requests.get(url)
 
 if response.status_code == 200:
-    print('Select the number to the corresponding sport and press enter...')
+    print('Select the number to the desired sport and press enter...')
     print('')
 
     print('1. Mens Basketball')
@@ -16,9 +15,6 @@ if response.status_code == 200:
 
     sport = input()
 
-    soup = BeautifulSoup(response.content, "html.parser")
-    print (soup.find(id='sidearm-schedule-game-result text-italic'))
-
 else:
     print('There has been an error, try again later')
 
@@ -27,7 +23,7 @@ if sport == 1:
 elif sport == 2:
     print('Loading stats for womens basketball...')
     soup = BeautifulSoup(response.content, "html.parser")
-    print(soup.get_text(soup.find("div", class_="sidearm-schedule-game-result text-italic")))
+    print(soup.find("div", class_="sidearm-schedule-game-result text-italic"))
 elif sport == 3:
     print('Loading stats for football...')
 elif sport == 4:
